@@ -79,6 +79,7 @@
 <div class="box-1">
     <div class="btn btn-one">
         <form action="{{ url('next') }}" type="post">
+            <input type="hidden" value="{{ $kanji->kanji_group }}" name="kanji_group">
             <input type="hidden" value="{{ $kanji->kanji_id }}" name="kanji_id">
             <button type="submit">Next</button>
         </form>
