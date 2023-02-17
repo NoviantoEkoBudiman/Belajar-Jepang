@@ -14,5 +14,6 @@ use App\Http\Controllers\KanjiController;
 |
 */
 
-Route::get('/', [KanjiController::class,"index"]);
+Route::get('/', [KanjiController::class,"index"])->name('index');
+Route::get('/language', [KanjiController::class,"language"])->name('language');
 Route::get('/next', [KanjiController::class,"next"]);
