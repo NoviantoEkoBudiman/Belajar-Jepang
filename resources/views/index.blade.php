@@ -20,7 +20,9 @@
         <link rel="mask-icon" href="/docs/5.3/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
         <link rel="icon" href="{{ asset('images/favicon.ico') }}">
         <meta name="theme-color" content="#712cf9">
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
         <style>
             .bd-placeholder-img {
                 font-size: 1.125rem;
@@ -80,7 +82,7 @@
     </head>
     <body>
         <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">Company name</a>
+            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">Vian's Flashcard</a>
             <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -98,21 +100,21 @@
                     <div class="position-sticky pt-3 sidebar-sticky">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{ route('index') }}">
+                                <a class="nav-link active" aria-current="page" href="{{ route('language.index') }}">
                                     <span data-feather="home" class="align-text-bottom"></span>
                                     Dashboard
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{ route('language') }}">
+                                <a class="nav-link active" aria-current="page" href="{{ route('language_index') }}">
                                     <span data-feather="book" class="align-text-bottom"></span>
                                     Language & Card
                                 </a>
                             </li>
                     
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">
+                                <a class="nav-link active" aria-current="page" href="{{ route('play.index') }}">
                                     <span data-feather="command" class="align-text-bottom"></span>
                                     Play
                                 </a>
@@ -131,5 +133,33 @@
         <script src="{{ asset('js/bootstrap.bundle.min.js') }}" integrity="" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="" crossorigin="anonymous"></script>
         <script src="{{ asset('js/dashboard.js') }}"></script>
+        
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script>
+            $(document).ready( function () {
+                $('#myTable').DataTable();
+            } );
+        </script>
+
+        @if (session('success'))
+            <script>
+                Swal.fire({
+                    position: 'top',
+                    icon: 'success',
+                    title: '{{ session("success") }}',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            </script>
+        @elseif(session('failed'))
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: '{{ session("failed") }}'
+                })
+            </script>
+        @endif
     </body>
 </html>
