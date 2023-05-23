@@ -2,7 +2,7 @@
 
 @section('main')
     <div class="table-responsive">
-        <table class="table table-striped table-sm">
+        <table class="table table-striped table-sm" id="myTable">
             <thead>
                 <tr>
                     <th scope="col">#</th>
