@@ -97,7 +97,7 @@
                   <form action="{{ url('card.update_card') }}" method="POST">
                     <button class="btn btn-sm btn-outline-primary btn-edit" id="editBtn" data-value="{{ $card->cards_id }}">
                       <span data-feather="edit" class="align-text-bottom"></span>
-                      Edit Card (pengembangan)
+                      Edit Card
                     </button>
                     @csrf
                     @method('DELETE')

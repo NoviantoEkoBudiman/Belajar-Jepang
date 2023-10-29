@@ -83,8 +83,8 @@ class CardsController extends Controller
 
     public function update_card(Request $request){
         $card = Card::find($request->cards_id);
-        $card->cards_question   = $card->cards_question;
-        $card->cards_answer     = $card->cards_answer;
+        $card->cards_question   = $request->cards_question;
+        $card->cards_answer     = $request->cards_answer;
         $card->update();
         
         return redirect()
