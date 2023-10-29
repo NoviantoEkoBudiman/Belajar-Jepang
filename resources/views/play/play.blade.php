@@ -80,8 +80,6 @@
     }
 </style>
 
-{{-- @dd($card) --}}
-
 <div class="container d-flex align-items-center justify-content-center flex-wrap">
     @if($card)
         <div class="box">
@@ -111,7 +109,6 @@
     @if($card)
         <div class="container bg-light">
             <div class="col-md-12 text-center">
-                {{-- <a type="button" class="btn btn-outline-info">Flip</a> --}}
                 <a href="{{ url("/next/".Request::segment(2)."/".@$card->cards_id) }}" type="button" class="btn btn-outline-primary">Next</a>
             </div>
         </div>

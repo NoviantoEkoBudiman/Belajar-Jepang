@@ -30,4 +30,6 @@ Route::get('language_index', [LanguageController::class,"language"])->name('lang
 Route::get('select_category/{id}', [PlayController::class,"edit"])->name('select_category');
 Route::get('next/{id_category}/{id_language}', [PlayController::class,"next"])->name('next');
 Route::get('finish/{id_category}', [PlayController::class,"finish"])->name('finish');
+Route::get('card/edit_card/{id_card}', [CardsController::class,"edit_card"])->name('edit_card');
+Route::post('card/update_card', [CardsController::class,"update_card"])->name('update_card');
 

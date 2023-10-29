@@ -16,7 +16,6 @@ class CardsController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
         $validated = $this->validate($request,[
             'cards_categories_id'   =>  'required',
             'cards_question'         =>  'required',
@@ -71,16 +70,25 @@ class CardsController extends Controller
         $cards  = Card::where('cards_id', $id)->first();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function edit_card($id)
     {
-        //
+        $card = Card::where('cards_id', $id)->first();
+        return response()->json([
+            "cards_id"              => $card->cards_id,
+            "cards_categories_id"   => $card->cards_categories_id,
+            "cards_question"        => $card->cards_question,
+            "cards_answer"          => $card->cards_answer,
+        ]);
+    }
+
+    public function update_card(Request $request){
+        $card = Card::find($request->cards_id);
+        $card->cards_question   = $card->cards_question;
+        $card->cards_answer     = $card->cards_answer;
+        $card->update();
+        
+        return redirect()
+                ->route('card.show',$request->cards_categories_id);
     }
 
     /**
@@ -91,7 +99,6 @@ class CardsController extends Controller
      */
     public function destroy($id)
     {
-        
         $card = Card::find($id);
         if($card){
             $delete = $card->delete();

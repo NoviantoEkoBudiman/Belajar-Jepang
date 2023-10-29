@@ -18,17 +18,20 @@ class CategoriesController extends Controller
     {
         $validated = $this->validate($request,[
             'categories_languages_id'   =>  'required',
-            'categories_name'           =>  'required'
+            'categories_name'           =>  'required',
+            'categories_type'           =>  'required'
         ],
         [
             'categories_languages_id.required'   =>  'Language id can\'t be null',
-            'categories_name.required'           =>  'Category\'s name  can\'t be null'
+            'categories_name.required'           =>  'Category\'s name  can\'t be null',
+            'categories_type.required'           =>  'Category\'s type  can\'t be null'
         ]);
 
         if($validated){    
             $category = new Category;
             $category->categories_languages_id  = $request->categories_languages_id;
             $category->categories_name  = $request->categories_name;
+            $category->categories_type  = $request->categories_type;
     
             $hasil = $category->save();
             return redirect()
@@ -52,39 +55,5 @@ class CategoriesController extends Controller
         $language = Language::find($id);
         $categories = Category::where('categories_languages_id', $id)->orderBy('categories_name', 'asc')->get();
         return view('category.detail',compact('language','categories'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

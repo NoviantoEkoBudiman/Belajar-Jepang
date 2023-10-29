@@ -21,6 +21,13 @@
               <input type="text" name="categories_languages_id" value="{{ Request::segment(2) }}" class="form-control d-none">
               <input type="text" name="categories_name" class="form-control">
             </div>
+            <div class="modal-body">
+              <p>Category's Type:</p>
+              <select name="categories_type" class="form-control">
+                <option value="1">Random</option>
+                <option value="2">Sequence</option>
+              </select>
+            </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
               <button type="submit" class="btn btn-primary">Save</button>
@@ -39,6 +46,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Category's Name</th>
+                    <th scope="col">Category's Type</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -47,6 +55,7 @@
                 <tr>
                   <td>{{ $key+1 }}</td>
                   <td>{{ $category->categories_name }}</td>
+                  <td>{{ $category->categories_type == 1 ? "Random" : "Sequence" }}</td>
                   <td><a href="{{ route('card.show',$category->categories_id) }}" class="btn btn-sm btn-outline-primary"><span data-feather="plus" class="align-text-bottom"></span> Add Cards</a></td>
                 </tr>
               @endforeach

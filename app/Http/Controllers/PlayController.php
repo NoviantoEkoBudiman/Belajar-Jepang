@@ -50,16 +50,26 @@ class PlayController extends Controller
      */
     public function show($id)
     {
-        $card = Card::where('cards_categories_id', $id)->where('card_status','!=','1')->inRandomOrder()->first();
+        $category = Category::find($id);
+        if($category->categories_type == 1){
+            $card = Card::where('cards_categories_id', $id)->where('card_status','!=','1')->inRandomOrder()->first();
+        }else{
+            $card = Card::where('cards_categories_id', $id)->orderBy('cards_categories_id', 'desc')->first();
+        }
         return view('play.play',compact('card'));
     }
 
     function next($category_id, $card_id)
     {
         $card = Card::find($card_id);
-        $card->card_status         = 1;
+        $card->card_status = 1;
         $card->save();
-        $card = Card::where('cards_categories_id', $category_id)->where('card_status','!=','1')->inRandomOrder()->first();
+        $category = Category::find($category_id);
+        if($category->categories_type == 1){
+            $card = Card::where('cards_categories_id', $category_id)->where('card_status','!=','1')->inRandomOrder()->first();
+        }else{
+            $card = Card::where('cards_categories_id', $category_id)->orderBy('cards_categories_id', 'desc')->where('card_status','!=','1')->first();
+        }
         $languages = Language::orderBy('languages_name', 'asc')->get();
         return view('play.play',compact('languages','card'));
     }
@@ -84,28 +94,5 @@ class PlayController extends Controller
         $language = Language::find($id);
         $categories = Category::where('categories_languages_id',$id)->orderBy('categories_name', 'asc')->get();
         return view('play.categories',compact('language','categories'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
