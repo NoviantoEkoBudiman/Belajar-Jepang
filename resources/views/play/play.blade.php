@@ -91,7 +91,7 @@
                 <div class="content d-flex flex-column align-items-center justify-content-center">
                     <div>
                         <h3 class="text-white fs-5">Answer</h3>
-                        <p class="fs-6 text-white">{{ $card->cards_answer }}</p>
+                        <p class="fs-6"><h1 class="text-white">{{ $card->cards_answer }}</h1></p>
                     </div>
                 </div>
             </div>
