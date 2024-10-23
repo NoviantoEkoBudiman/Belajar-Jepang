@@ -99,7 +99,7 @@
     @else
         <div>
             Congratulation, you've finish the game!<br/>
-            <a href="{{ route('finish',Request::segment(2)) }}" type="button" class="btn btn-outline-primary">Finish</a>
+            <a href="{{ url('finish/'.Request::segment(2).'/'.session('language_id')) }}" type="button" class="btn btn-outline-primary">Finish</a>
         </div>
     @endif
 </div>

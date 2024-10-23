@@ -70,17 +70,10 @@ class PlayController extends Controller
         }else{
             $card = Card::where('cards_categories_id', $category_id)->orderBy('cards_categories_id', 'desc')->where('card_status','!=','1')->first();
         }
+        // dd($category->categories_languages_id);
+        session(['language_id' => $category->categories_languages_id]);
         $languages = Language::orderBy('languages_name', 'asc')->get();
         return view('play.play',compact('languages','card'));
-    }
-
-    function finish($id)
-    {
-        DB::table('cards')
-              ->where('cards_categories_id', $id)
-              ->update(['card_status' => 0]);
-        $languages = Language::orderBy('languages_name', 'asc')->get();
-        return view('play.index',compact('languages'));
     }
 
     /**
@@ -93,6 +86,16 @@ class PlayController extends Controller
     {
         $language = Language::find($id);
         $categories = Category::where('categories_languages_id',$id)->orderBy('categories_name', 'asc')->get();
+        return view('play.categories',compact('language','categories'));
+    }
+
+    function finish($categories_id, $language_id)
+    {
+        DB::table('cards')
+              ->where('cards_categories_id', $categories_id)
+              ->update(['card_status' => 0]);
+        $categories = Category::where('categories_languages_id',$language_id)->orderBy('categories_name', 'asc')->get();
+        $language = Language::where("languages_id",$categories[0]->categories_languages_id)->first();
         return view('play.categories',compact('language','categories'));
     }
 }

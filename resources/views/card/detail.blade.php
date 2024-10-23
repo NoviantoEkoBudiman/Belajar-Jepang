@@ -77,41 +77,53 @@
 
   <h2>{{ $category->categories_name }}'s Categories</h2>
   <div class="table-responsive">
-      <table class="table table-striped table-sm" id="myTable">
-          <thead>
-              <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Question</th>
-                  <th scope="col">Answer</th>
-                  <th scope="col">Action</th>
-              </tr>
-          </thead>
-          <tbody>
-            @foreach ($cards as $key=>$card)
-              <tr>
-                <td>{{ $key+1 }}</td>
-                <td id="cards_question">{{ $card->cards_question }}</td>
-                <td id="cards_answer">{{ $card->cards_answer }}</td>
-                <td>
-                  
-                  <form action="{{ url('card.update_card') }}" method="POST">
-                    <button class="btn btn-sm btn-outline-primary btn-edit" id="editBtn" data-value="{{ $card->cards_id }}">
-                      <span data-feather="edit" class="align-text-bottom"></span>
-                      Edit Card
-                    </button>
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-sm btn-outline-danger">
-                      <span data-feather="trash" class="align-text-bottom"></span>
-                      Delete Card
-                    </button>
-                  </form>
-                </td>
-              </tr>
-            @endforeach
-          </tbody>
-      </table>
+    <input type="checkbox" name="checkbox"> Hide Answer
+    <table class="table table-striped table-sm" id="myTable">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Question</th>
+                <th scope="col" id="cards_answer_header">Answer</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+          @foreach ($cards as $key=>$card)
+            <tr>
+              <td>{{ $key+1 }}</td>
+              <td id="cards_question">{{ $card->cards_question }}</td>
+              <td id="cards_answer" class="cards_answer">{{ $card->cards_answer }}</td>
+              <td>
+                <form action="{{ route('destroy_card',$card->cards_id) }}" method="POST">
+                  <button class="btn btn-sm btn-outline-primary btn-edit" id="editBtn" data-value="{{ $card->cards_id }}">
+                    <span data-feather="edit" class="align-text-bottom"></span>
+                    Edit Card
+                  </button>
+                  @csrf
+                  @method('DELETE')
+                  <button class="btn btn-sm btn-outline-danger" type="submit">
+                    <span data-feather="trash" class="align-text-bottom"></span>
+                    Delete Card
+                  </button>
+                </form>
+              </td>
+            </tr>
+          @endforeach
+        </tbody>
+    </table>
   </div>
+
+  <script>
+    $("input[name='checkbox']").click(function(){
+      if($("input[name='checkbox']").is(":checked")){
+        $(".cards_answer").hide();
+        $("#cards_answer_header").hide();
+      }else{
+        $(".cards_answer").show();
+        $("#cards_answer_header").show();
+      }
+    });
+  </script>
 
   <script>
     $("#add-more").click(function(){
