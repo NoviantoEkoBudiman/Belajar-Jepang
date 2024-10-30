@@ -9,7 +9,7 @@
         <meta name="generator" content="Hugo 0.108.0">
         <title>Dashboard Template · Bootstrap v5.3</title>
 
-        <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
+        <!-- <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/"> -->
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" integrity="" crossorigin="anonymous">
 
         <!-- Favicons -->
@@ -20,9 +20,12 @@
         <link rel="mask-icon" href="/docs/5.3/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
         <link rel="icon" href="{{ asset('images/favicon.ico') }}">
         <meta name="theme-color" content="#712cf9">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
-        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> -->
+        <script src="{{ asset('js/jquery.min.js'); }}"></script>
+        <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" /> -->
+        <link rel="stylesheet" href="{{ asset('css/jquery.dataTables.css'); }}" />
+        <!-- <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script> -->
+        <script src="{{ asset('js/jquery.dataTables.js'); }}"></script>
         <style>
             .bd-placeholder-img {
                 font-size: 1.125rem;
@@ -130,9 +133,10 @@
             </div>
         </div>
 
-        <script src="{{ asset('js/bootstrap.bundle.min.js') }}" integrity="" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="" crossorigin="anonymous"></script>
-        <script src="{{ asset('js/dashboard.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.bundle.min.js'); }}" integrity="" crossorigin="anonymous"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="" crossorigin="anonymous"></script> -->
+        <script src="{{ asset('js/feather.min.js'); }}" integrity="" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/dashboard.js'); }}"></script>
         
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
