@@ -22,27 +22,6 @@ class PlayController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -54,7 +33,7 @@ class PlayController extends Controller
         if($category->categories_type == 1){
             $card = Card::where('cards_categories_id', $id)->where('card_status','!=','1')->inRandomOrder()->first();
         }else{
-            $card = Card::where('cards_categories_id', $id)->orderBy('cards_categories_id', 'desc')->first();
+            $card = Card::where('cards_categories_id', $id)->orderBy('cards_id', 'asc')->first();
         }
         return view('play.play',compact('card'));
     }
@@ -68,7 +47,7 @@ class PlayController extends Controller
         if($category->categories_type == 1){
             $card = Card::where('cards_categories_id', $category_id)->where('card_status','!=','1')->inRandomOrder()->first();
         }else{
-            $card = Card::where('cards_categories_id', $category_id)->orderBy('cards_categories_id', 'desc')->where('card_status','!=','1')->first();
+            $card = Card::where('cards_categories_id', $category_id)->where('card_status','!=','1')->orderBy('cards_id', 'asc')->first();
         }
         // dd($category->categories_languages_id);
         session(['language_id' => $category->categories_languages_id]);
